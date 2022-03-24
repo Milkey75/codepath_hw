@@ -21,18 +21,8 @@ Each color is vulnerable to only 2 of the 6 possible exploits. First discover wh
 Vulnerability #1: _Blind sql injection. I clicked on find a salesman, then clicked on Daron Burke. I then clicked on the url and added a single quote at the end of the URL, then enter. The response was Database query failed. 
 blueblindsql.gif
 
-Descript![Uploading blue blind sql.gif…]()
-ion:
 <img src="blueblindsql.gif">
 
-to put your gifs in the read me blueblindsql.gif
-<img src="blue-vuln1.gif">
-
-Vulnerability #2: __________________
-
-Description:
-
-<img src="blue-vuln2.gif">
 
 ## Green
 
@@ -42,12 +32,6 @@ Description:
 
 <img src="green-vuln1.gif">
 
-Vulnerability #2: __________________
-
-Description:
-
-<img src="green-vuln2.gif">
-
 
 ## Red
 
@@ -56,12 +40,6 @@ Vulnerability #1: __________________
 Description:
 
 <img src="red-vuln1.gif">
-
-Vulnerability #2: __________________
-
-Description:
-
-<img src="red-vuln2.gif">
 
 
 ## Notes
