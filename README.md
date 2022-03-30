@@ -1,43 +1,97 @@
-# codepath_hw
-# Project 8 - Pentesting Live Targets
+# Honeypot Assignment
 
-Time spent: **3** hours spent in total
+**Time spent:** **X** hours spent in total
+4 hrs
 
-> Objective: Identify vulnerabilities in three different versions of the Globitek website: blue, green, and red.
+**Objective:** Create a honeynet using MHN-Admin. Present your findings as if you were requested to give a brief report of the current state of Internet security. Assume that your audience is a current employer who is questioning why the company should allocate anymore resources to the IT security team.
 
-The six possible exploits are:
+### MHN-Admin Deployment (Required)
 
-* Username Enumeration
-* Insecure Direct Object Reference (IDOR)
-* SQL Injection (SQLi)
-* Cross-Site Scripting (XSS)
-* Cross-Site Request Forgery (CSRF)
-* Session Hijacking/Fixation
+**Summary:** How did you deploy it? Did you use GCP, AWS, Azure, Vagrant, VirtualBox, etc.?
+I used GCP to deploy the honeypot. I copy and pasted instructions. 
+Replacing backslashes with ^.
+gcloud compute firewall-rules list
 
-Each color is vulnerable to only 2 of the 6 possible exploits. First discover which color has the specific vulnerability, then write a short description of how to exploit it, and finally demonstrate it using screenshots compiled into a GIF.
+gcloud compute firewall-rules create http \
+    --allow tcp:80 \
+    --description="Allow HTTP from Anywhere" \
+    --direction ingress \
+    --target-tags="mhn-admin"
 
-## Blue
+gcloud compute firewall-rules create honeymap \
+    --allow tcp:3000 \
+    --description="Allow HoneyMap Feature from Anywhere" \
+    --direction ingress \
+    --target-tags="mhn-admin"
 
-Vulnerability #1: Blind sql injection. I clicked on find a salesman, then clicked on Daron Burke. I then clicked on the url and added a single quote at the end of the URL, then enter. The response was Database query failed. 
+gcloud compute firewall-rules create hpfeeds \
+    --allow tcp:10000 \
+    --description="Allow HPFeeds from Anywhere" \
+    --direction ingress \
+    --target-tags="mhn-admin"
+    
+    gcloud compute instances create "mhn-admin" \
+    --machine-type "n1-standard-1" \
+    --subnet "default" \
+    --maintenance-policy "MIGRATE" \
+    --tags "mhn-admin" \
+    --image-family "ubuntu-minimal-1804-lts" \
+    --image-project "ubuntu-os-cloud" \
+    --boot-disk-size "10" \
+    --boot-disk-type "pd-standard" \
+    --boot-disk-device-name "mhn-admin"
+    
+    sudo apt update
+sudo apt install git python-magic -y
 
-<img src="blueblindsql.gif">
+cd /opt/
+sudo git clone https://github.com/pwnlandia/mhn.git
+cd mhn/
+
+sudo sed -i 's/Flask-SQLAlchemy==2.3.2/Flask-SQLAlchemy==2.5.1/g' server/requirements.txt
+
+sudo ./install.sh
 
 
-## Green
+<img src="honeypot.gif">
 
-Vulnerability #1: I go to green site, click on log in. Type pperson for username and the response in bold"Log in was successful" So it would bold it for valid users and it would be unbold for unvalid users.
+### Dionaea Honeypot Deployment (Required)
 
-<img src="greenuserenum.gif">
+**Summary:** Briefly in your own words, what does dionaea do?
+Dionaea captures and attacks payloads and malware.
+
+<img src="honeypot2.gif">
+
+### Database Backup (Required) 
+
+**Summary:** What is the RDBMS that MHN-Admin uses? What information does the exported JSON file record?
+I wasnt able to gather info on RDBMS that mhn-admin uses. JSON files Log file of the captures. IP and locations are captured
 
 
-## Red
+*Be sure to upload session.json directly to this GitHub repo/branch in order to get full credit.*
+{"sid":"5acf4122e8d14c75b1fd457cbc3a5dc5","init":true,"started":"2022-03-11T17:44:46.677Z","timestamp":"2022-03-11T17:45:05.202Z","status":"ok","errors":0,"did":"46cb46c6-ce80-5116-885d-2228b08b5e28","duration":18.524999856948853,"attrs":{"release":"Slack@4.24.0","environment":"production"}}
 
-Vulnerability #1: INSECURE DIRECT OBJECT REFERENCE Clicked on red, then clicked on salesperson, click on Daron Burke. Check the url. the end has a number that can be manipulated. Add a zero to end of url. It changes the number from 1 to 10. It then breaks, and opens into the salesperson Testy Mctesteron.
+### Deploying Additional Honeypot(s) (Optional)
 
-<img src="reduseridor.gif">
+#### X Honeypot
 
+**Summary:** What does this honeypot simulate and do for a security researcher? 
+
+
+<img src="x-honeypot.gif">
+
+### Malware Capture and Identification (Optional)
+
+#### X Malware
+
+**Summary:** How did you find it? Which honeypot captured it? What does each malware do?
+
+MD5 Hash: *Run `md5sum` on the file and record the hash here.*
+
+SHA1 Hash: *Run `sha1sum` on the file and record the hash here.*
+
+<img src="x-malware.gif">
 
 ## Notes
 
-Describe any challenges encountered while doing the work
-Navigation of github. Endless issues.
+Describe any challenges encountered while doing the assignment. Nothing works.....
