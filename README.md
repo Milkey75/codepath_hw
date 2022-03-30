@@ -78,7 +78,7 @@ I wasnt able to gather info on RDBMS that mhn-admin uses. JSON files Log file of
 **Summary:** What does this honeypot simulate and do for a security researcher? 
 
 
-<img src="x-honeypot.gif">
+<img src="honeypot.gif">
 
 ### Malware Capture and Identification (Optional)
 
