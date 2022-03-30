@@ -71,27 +71,5 @@ I wasnt able to gather info on RDBMS that mhn-admin uses. JSON files Log file of
 *Be sure to upload session.json directly to this GitHub repo/branch in order to get full credit.*
 {"sid":"5acf4122e8d14c75b1fd457cbc3a5dc5","init":true,"started":"2022-03-11T17:44:46.677Z","timestamp":"2022-03-11T17:45:05.202Z","status":"ok","errors":0,"did":"46cb46c6-ce80-5116-885d-2228b08b5e28","duration":18.524999856948853,"attrs":{"release":"Slack@4.24.0","environment":"production"}}
 
-### Deploying Additional Honeypot(s) (Optional)
-
-#### X Honeypot
-
-**Summary:** What does this honeypot simulate and do for a security researcher? 
-
-
-<img src="honeypot.gif">
-
-### Malware Capture and Identification (Optional)
-
-#### X Malware
-
-**Summary:** How did you find it? Which honeypot captured it? What does each malware do?
-
-MD5 Hash: *Run `md5sum` on the file and record the hash here.*
-
-SHA1 Hash: *Run `sha1sum` on the file and record the hash here.*
-
-<img src="x-malware.gif">
-
-## Notes
 
 Describe any challenges encountered while doing the assignment. Nothing works.....
